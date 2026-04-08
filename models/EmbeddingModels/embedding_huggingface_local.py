@@ -16,6 +16,6 @@ documents=[
     "i live in jhamsikhel"
 ]
 
-vector2= embedding.embed_documents(documents)
+vector2= embedding.embed_documents(documents) #it give 2d list
 
 print(str(vector2))
