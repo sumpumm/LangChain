@@ -5,12 +5,12 @@ import os
 load_dotenv()
 
 llm = HuggingFaceEndpoint(
-    repo_id="Qwen/Qwen3-Coder-Next",
+    repo_id="openai/gpt-oss-120b",
     task="text-generation",
     huggingfacehub_api_token= os.getenv("HUGGINGFACEHUB_ACCESS_TOKEN")
 )
 
 model = ChatHuggingFace(llm=llm)
 
-result = model.invoke("what is the capital of nepal")
+result = model.invoke("what is the prime minister of nepal 2026")
 print(result.content)
