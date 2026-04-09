@@ -15,7 +15,7 @@ documents = [
     
     "Python is a versatile programming language widely used for web development, data science, and machine learning."
 ]   
-
+ 
 query = "Tell me about the capital of Nepal"
 
 doc_embeddings = embedding_model.embed_documents(documents)
