@@ -1,0 +1,37 @@
+from langchain_huggingface import ChatHuggingFace, HuggingFaceEndpoint
+from dotenv import load_dotenv
+from langchain_core.prompts import PromptTemplate
+from langchain_core.output_parsers import JsonOutputParser
+import os
+
+load_dotenv()
+
+llm = HuggingFaceEndpoint(
+    repo_id="openai/gpt-oss-120b",
+    task="text-generation",
+    huggingfacehub_api_token= os.getenv("HUGGINGFACEHUB_ACCESS_TOKEN")
+)
+
+model = ChatHuggingFace(llm=llm)
+parser = JsonOutputParser()
+
+template = PromptTemplate(
+    template='Give me the name, age and city of a fictional person \n {format_instruction}',
+    input_variables=[],
+    partial_variables={'format_instruction': parser.get_format_instructions()} # parser.get_format_instructions() gives instruction to llm to return json object.
+)# here the format_instruction is not a input variable but a partial variable  because the format_intruction is getting filled by the parser.get_format_instructions() before run time
+
+# prompt = template.format()
+
+# # print and check the prompt
+# print(prompt)
+
+# result = model.invoke(prompt)
+# final_result = parser.parse(result.content)
+# print(final_result)
+# print(type(final_result))
+
+chain = template | model | parser
+
+result = chain.invoke({})
+print(result)
