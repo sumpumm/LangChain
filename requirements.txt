@@ -165,6 +165,7 @@ watchdog==6.0.0
 watchfiles==1.1.1
 websocket-client==1.9.0
 websockets==16.0
+wikipedia==1.4.0
 xxhash==3.6.0
 yarl==1.23.0
 zipp==3.23.1
